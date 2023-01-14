@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ShopMVC.Models.Product>
+
+@{
+    ViewData["Title"] = "Product";
+}
+
+<h1>Product</h1>
+<h6>Index</h6>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PrimaryKey)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+                 @Html.ActionLink("asc", "SortedNameAsc")|
+                @Html.ActionLink("desc", "SortedNameDesc")
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Sale)
+                @Html.ActionLink("asc", "SortedSaleAsc")|
+                @Html.ActionLink("desc", "SortedSaleDesc")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+                @Html.ActionLink("asc", "SortedCatAsc")|
+                @Html.ActionLink("desc", "SortedCatDesc")
+            </th>
+            
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrimaryKey)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sale)
+                </td>
+
+            
+            <td>
+                    @Html.ActionLink(item.CategoryId+"", "index", "Product",new{id=item.CategoryId})
+               @* @Html.DisplayFor(modelItem => item.CategoryId)*@
+            </td>
+           
+            
+            <td>
+                @Html.ActionLink("Edit", "Edit", item) |
+                @Html.ActionLink("Details", "Details", new {  id=item.PrimaryKey  }) |
+                @Html.ActionLink("Delete", "Delete", item)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

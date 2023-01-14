@@ -1,0 +1,63 @@
+﻿@model ShopMVC.Models.Category
+@using Shop_MVC.Data
+    
+    
+    
+
+@{
+    ViewData["Title"] = "Details";
+}
+<h1>Category</h1>
+<h6>Details</h6>
+
+<div>
+    <h4>Category</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PrimaryKey)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PrimaryKey)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            <label> Shop</label>
+        </dt>
+        <dd class = "col-sm-10">
+            <label> @ViewBag.shopName</label>
+
+            @*@Html.DisplayFor(model => Da  model.ShopId)*@
+            @Html.ActionLink("Link", "Details", "Shop",new{id=Model.ShopId}  )
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Products)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.ActionLink("Link", "index", "Product",new{id=Model.PrimaryKey}  )
+        </dd>
+
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Products)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.CreateList(Model.Products)
+          
+        </dd>
+
+
+
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit",Model) |
+    @Html.ActionLink("Back to List", "Index",new {id=@Model.ShopId})
+    
+</div>

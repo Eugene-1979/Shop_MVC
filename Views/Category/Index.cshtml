@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ShopMVC.Models.Category>
+
+@{
+    ViewData["Title"] = "Category";
+}
+
+<h1>Category</h1>
+<h6>Index</h6>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PrimaryKey)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+                @Html.ActionLink("asc", "IndexAllNameAsc",new {id=@ViewBag.Shopid})|
+                @Html.ActionLink("desc", "IndexAllNameDesc",new {id=@ViewBag.Shopid})
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShopId)
+                @Html.ActionLink("asc", "IndexAllShopidAsc")|
+                @Html.ActionLink("desc", "IndexAllShopidDesc")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrimaryKey)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+
+               
+            </td>
+                <td>
+                    @Html.ActionLink(item.ShopId+"","Details", "Shop", new {id=item.ShopId})
+                
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", item) |
+                @Html.ActionLink("Details", "Details",  new {id=item.PrimaryKey}) |
+                @Html.ActionLink("Delete", "Delete", item)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
